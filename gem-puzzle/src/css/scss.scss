@@ -66,3 +66,9 @@ body {
     background: rgb(224, 212, 212);
   }
 }
+
+.pause_btn {
+  &:hover {
+    cursor: pointer;
+  }
+}
