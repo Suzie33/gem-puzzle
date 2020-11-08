@@ -70,19 +70,32 @@ const gameField = {
   _createChips() {
     const fragment = document.createDocumentFragment();
 
-    const chipsList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    const chipsList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    const shuffledChips = this._shuffleChips(chipsList);
 
-    chipsList.forEach((chip) => {
+    shuffledChips.forEach((chip) => {
       const chipElement = document.createElement("div");
 
-      chipElement.classList.add("chip");
-      chipElement.textContent = `${chip}`;
+      if (`${chip}` === '0') {
+        chipElement.classList.add("empty");
+      } else {
+        chipElement.classList.add("chip");
+        chipElement.textContent = `${chip}`;
+      }
+      
       chipElement.setAttribute("data-id", `${chip}`);
 
       fragment.appendChild(chipElement);
     })
 
     return fragment;
+  },
+  _shuffleChips(array) {
+    for (let currentInd = array.length - 1; currentInd > 0; currentInd--) {
+      const randomInd = Math.floor(Math.random() * (currentInd + 1));
+      [array[currentInd], array[randomInd]] = [array[randomInd], array[currentInd]];
+    }
+    return array;
   }
 }
 
