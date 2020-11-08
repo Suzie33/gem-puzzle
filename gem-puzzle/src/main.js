@@ -1,102 +1,84 @@
 import './css/scss.scss';
 
-import './scripts/role.js';
+// Create main elements
+const main = document.createElement("div");
+const field = document.createElement("div");
 
-const gameField = {
-  elements: {
-    main: null,
-    board: null,
-    chips: [],
+// Setup main elements
+main.classList.add("main");
+field.classList.add("field");
 
-    info: null,
-    time: null,
-    moves: null,
-    pause_btn: null
-  },
-  init() {
-    // Create main elements
-    this.elements.main = document.createElement("div");
-    this.elements.board = document.createElement("div");
+// Add to DOM
+main.appendChild(field);
+document.body.appendChild(main);
 
-    // Setup main elements
-    this.elements.main.classList.add("main");
-    this.elements.board.classList.add("board");
-    this.elements.board.appendChild(this._createChips());
-    this.elements.chips = this.elements.board.querySelectorAll(".chips");
+//
+const empty = {
+  value: 0,
+  top: 0,
+  left: 0
+}
+const cellSize = 100;
 
-    //Create info elements
-    this.elements.info = document.createElement("div");
-    this.elements.time = document.createElement("div");
-    this.elements.moves = document.createElement("div");
-    this.elements.pause_btn = document.createElement("button");
+const cells = [];
+cells.push(empty);
 
-    this.elements.info.classList.add("info");
-    this.elements.time.classList.add("time");
+const move = (index) => {
+  const cell = cells[index];
 
-    const time_title = document.createElement("span");
-    time_title.classList.add('time_title');
-    time_title.textContent = 'Time: ';
-    const time_timer = document.createElement("span");
-    time_timer.classList.add('time_timer');
-    time_timer.textContent = '00 : 53';
-    this.elements.time.appendChild(time_title);
-    this.elements.time.appendChild(time_timer);
-    
-    this.elements.moves.classList.add("moves");
+  //return if we cant move cell
+  const leftDiff = Math.abs(empty.left - cell.left);
+  const topDiff = Math.abs(empty.top - cell.top);
+  if (leftDiff + topDiff > 1) return;
 
-    const moves__title = document.createElement("span");
-    moves__title.classList.add('moves__title');
-    moves__title.textContent = 'Moves: ';
-    const moves__counter = document.createElement("span");
-    moves__counter.classList.add('moves__counter');
-    moves__counter.textContent = '15';
-    this.elements.moves.appendChild(moves__title);
-    this.elements.moves.appendChild(moves__counter);
+  //move cell to empty place
+  cell.element.style.left = `${empty.left * cellSize}px`;
+  cell.element.style.top = `${empty.top * cellSize}px`;
 
-    this.elements.pause_btn = document.createElement("button");
-    this.elements.pause_btn.classList.add('pause_btn');
-    this.elements.pause_btn.textContent = 'Pause game';
+  //change positions in js
+  const {left, top} = empty;
 
-    // Add to DOM
-    this.elements.info.appendChild(this.elements.time);
-    this.elements.info.appendChild(this.elements.moves);
-    this.elements.info.appendChild(this.elements.pause_btn);
+  empty.left = cell.left;
+  empty.top = cell.top;
+  cell.left = left;
+  cell.top = top;
 
-    this.elements.main.appendChild(this.elements.info);
-    this.elements.main.appendChild(this.elements.board);
-    document.body.appendChild(this.elements.main);
+  //check if we win
+  const isFinished = cells.every(cell => {
+    return cell.value === cell.top * 4 + cell.left;
+  });
 
-  },
-  _createChips() {
-    const fragment = document.createDocumentFragment();
-
-    const chipsList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-    const shuffledChips = this._shuffleChips(chipsList);
-
-    shuffledChips.forEach((chip) => {
-      const chipElement = document.createElement("div");
-
-      if (`${chip}` === '0') {
-        chipElement.classList.add("empty");
-      } else {
-        chipElement.classList.add("chip");
-        chipElement.textContent = `${chip}`;
-      }
-      
-      chipElement.setAttribute("data-id", `${chip}`);
-
-      fragment.appendChild(chipElement);
-    })
-
-    return fragment;
-  },
-  _shuffleChips(array) {
-    for (let currentInd = array.length - 1; currentInd > 0; currentInd--) {
-      const randomInd = Math.floor(Math.random() * (currentInd + 1));
-      [array[currentInd], array[randomInd]] = [array[randomInd], array[currentInd]];
-    }
-    return array;
+  if (isFinished) {
+    setTimeout(() => alert("You won!"), 300);
   }
 }
 
-gameField.init();
+//random array
+const numbers = [...Array(15).keys()].sort(() => Math.random() - 0.5);
+
+for (let i = 1; i <= 15; i++) {
+  const cell = document.createElement('div');
+  const value = numbers[i - 1] + 1;
+  cell.classList.add("cell");
+  cell.textContent = value;
+
+  const cellsInRow = 4;
+  const left = i % cellsInRow;
+  const top = (i - left) / 4;
+
+  cells.push({
+    value: value,
+    left: left,
+    top: top,
+    element: cell
+  })
+
+  cell.style.left = `${left * cellSize}px`;
+  cell.style.top = `${top * cellSize}px`;
+
+  field.appendChild(cell);
+
+  cell.addEventListener('click', () => {
+    move(i);
+  })
+}
