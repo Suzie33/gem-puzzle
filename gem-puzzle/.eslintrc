@@ -12,7 +12,8 @@
     "no-multi-spaces": "warn",
     "space-in-parens": "warn",
     "prefer-const": "warn",
-    "no-use-before-define": "warn"
+    "no-use-before-define": "warn",
+    "no-debugger": "warn"
   },
   "extends": [
     "eslint:recommended"
