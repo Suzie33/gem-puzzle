@@ -21,37 +21,37 @@ const gameField = {
     this.elements.chips = this.elements.board.querySelectorAll(".chips");
 
     //Create info elements
-    this.elements.info = document.createElement("div");
-    this.elements.time = document.createElement("div");
-    this.elements.moves = document.createElement("div");
+    // this.elements.info = document.createElement("div");
+    // this.elements.time = document.createElement("div");
+    // this.elements.moves = document.createElement("div");
     this.elements.pause_btn = document.createElement("button");
 
-    this.elements.info.classList.add("info");
-    this.elements.time.classList.add("time");
+    // this.elements.info.classList.add("info");
+    // this.elements.time.classList.add("time");
 
-    const time_title = document.createElement("span");
-    time_title.classList.add('time_title');
-    time_title.textContent = 'Time: ';
-    const time_timer = document.createElement("span");
-    time_timer.classList.add('time_timer');
-    time_timer.textContent = '00 : 53';
-    this.elements.time.appendChild(time_title);
-    this.elements.time.appendChild(time_timer);
+    // const time_title = document.createElement("span");
+    // time_title.classList.add('time_title');
+    // time_title.textContent = 'Time: ';
+    // const time_timer = document.createElement("span");
+    // time_timer.classList.add('time_timer');
+    // time_timer.textContent = '00 : 53';
+    // this.elements.time.appendChild(time_title);
+    // this.elements.time.appendChild(time_timer);
     
-    this.elements.moves.classList.add("moves");
+    // this.elements.moves.classList.add("moves");
 
-    const moves__title = document.createElement("span");
-    moves__title.classList.add('moves__title');
-    moves__title.textContent = 'Moves: ';
-    const moves__counter = document.createElement("span");
-    moves__counter.classList.add('moves__counter');
-    moves__counter.textContent = '15';
-    this.elements.moves.appendChild(moves__title);
-    this.elements.moves.appendChild(moves__counter);
+    // const moves__title = document.createElement("span");
+    // moves__title.classList.add('moves__title');
+    // moves__title.textContent = 'Moves: ';
+    // const moves__counter = document.createElement("span");
+    // moves__counter.classList.add('moves__counter');
+    // moves__counter.textContent = '15';
+    // this.elements.moves.appendChild(moves__title);
+    // this.elements.moves.appendChild(moves__counter);
 
-    this.elements.pause_btn = document.createElement("button");
-    this.elements.pause_btn.classList.add('pause_btn');
-    this.elements.pause_btn.textContent = 'Pause game';
+    // this.elements.pause_btn = document.createElement("button");
+    // this.elements.pause_btn.classList.add('pause_btn');
+    // this.elements.pause_btn.textContent = 'Pause game';
 
     // Add to DOM
     this.elements.info.appendChild(this.elements.time);

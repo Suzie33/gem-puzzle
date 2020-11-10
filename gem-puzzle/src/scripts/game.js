@@ -1,5 +1,6 @@
 import Field from './field.js';
-import GameNumbersGenerator from './gameNumbersGenerator.js'
+import Statusbar from './statusbar/statusbar.js';
+import GameNumbersGenerator from './gameNumbersGenerator.js';
 
 export default class Game {
   constructor () {
@@ -7,7 +8,9 @@ export default class Game {
     this._gameNumbersGenerator = new GameNumbersGenerator();
     const numbers = this._gameNumbersGenerator.getNumbers(fieldSize);
     this.field = new Field(fieldSize, numbers);
+    this.statusbar = new Statusbar();
     this.element = this.getElement();
+    this.element.appendChild(this.statusbar.element);
     this.element.appendChild(this.field.element);
   }
 
