@@ -8,6 +8,13 @@ export default class MenuBtn {
     menuBtnDom.classList.add("menuBtn");
     menuBtnDom.textContent = 'Menu';
 
+    menuBtnDom.addEventListener('click', () => {
+      menuBtnDom.classList.toggle('menuBtn--active');
+      
+      const event = new Event('menuBtnClick', { bubbles: true });
+      this.element.dispatchEvent(event);
+    })
+
     return menuBtnDom;
   }
 }

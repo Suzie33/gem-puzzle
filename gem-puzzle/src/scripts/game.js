@@ -1,5 +1,6 @@
 import Field from './field.js';
 import Statusbar from './statusbar/statusbar.js';
+import Menu from './menu/menu';
 import GameNumbersGenerator from './gameNumbersGenerator.js';
 
 export default class Game {
@@ -7,7 +8,8 @@ export default class Game {
     const fieldSize = 4;
     this._gameNumbersGenerator = new GameNumbersGenerator();
     const numbers = this._gameNumbersGenerator.getNumbers(fieldSize);
-    this.field = new Field(fieldSize, numbers);
+    this.menu = new Menu();
+    this.field = new Field(fieldSize, numbers, this.menu.element);
     this.statusbar = new Statusbar();
     this.element = this.getElement();
     this.element.appendChild(this.statusbar.element);
@@ -21,6 +23,9 @@ export default class Game {
     gameDom.addEventListener('moveDone', () => {
       this.isGameFinished();
     })
+    gameDom.addEventListener('menuBtnClick', () => {
+      this.menu.element.classList.toggle('menu--visible');
+    });
     return gameDom;
   }
 

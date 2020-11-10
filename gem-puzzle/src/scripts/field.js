@@ -1,13 +1,15 @@
 import Cell from './cell.js';
 
 export default class Field {
-  constructor (fieldSize, numbers) {
+  constructor (fieldSize, numbers, menuDom) {
     this.fieldSize = fieldSize;
     this._lastCellIndex = this.fieldSize * this.fieldSize - 1;
     this.emptyCell = new Cell(this._lastCellIndex, this.fieldSize * this.fieldSize, this.fieldSize - 1, this.fieldSize - 1);
     this.numbers = numbers;
     this.element = this.getElement();
     this.cells = this.getCells();
+
+    this.element.appendChild(menuDom);
   }
 
   getElement () {

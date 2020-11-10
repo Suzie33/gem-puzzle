@@ -1,5 +1,5 @@
 import './css/scss.scss';
-import Game from './scripts/game.js';
+import App from './app';
 
-const game = new Game();
-document.body.appendChild(game.element);
+const app = new App();
+app.init();
