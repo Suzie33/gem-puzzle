@@ -12,6 +12,7 @@ export default class App{
   handleNewGame () {
     this.element.removeEventListener('newGame', this.handler)
     this.element.remove();
+    this.game.destroy();
     this.game = null;
     
     this.init();

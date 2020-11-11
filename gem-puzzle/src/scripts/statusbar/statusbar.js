@@ -20,4 +20,8 @@ export default class Statusbar {
 
     return statusbarDom;
   }
+
+  destroy () {
+    this.time.clearTimer();
+  }
 }

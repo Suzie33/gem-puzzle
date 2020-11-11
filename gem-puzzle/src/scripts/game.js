@@ -38,4 +38,8 @@ export default class Game {
       setTimeout(() => alert("You won!"), 300);
     }
   }
+
+  destroy () {
+    this.statusbar.destroy();
+  }
 }
