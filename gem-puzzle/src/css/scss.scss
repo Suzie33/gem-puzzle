@@ -30,6 +30,12 @@ body {
   background: #ecb3db;
   border: 1px solid #444;
   border-radius: 3px;
+
+  &_info {
+    display: none;
+    width: 70%;
+    text-align: center;
+  }
 }
 
 .cell {
@@ -102,13 +108,13 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: #dc91ec;
   }
 
   &__item {
     list-style: none;
     font-size: 24px;
     font-weight: 700;
-    color: #dc91ec;
     margin-bottom: 22px;
     transition: .3s;
     text-shadow: 2px 2px 5px #000;
@@ -123,7 +129,42 @@ body {
     }
   }
 
+  &__title {
+    margin: 0;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 26px;
+  }
+
   &--visible {
     display: block;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.fieldsize_select {
+  padding: 5px 10px;
+  margin-bottom: 50px;
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  background: #dc91ec;
+}
+
+.backBtn {
+  position: absolute;
+  bottom: 30px;
+  font-size: 22px;
+  border: none;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 2px 8px;
+  background-color: #dc91ec;
+
+  &:hover {
+    cursor: pointer;
+    opacity: .8;
   }
 }

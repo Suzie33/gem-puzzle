@@ -5,11 +5,9 @@ import GameNumbersGenerator from './gameNumbersGenerator.js';
 import Sound from '../assets/button5.wav';
 
 export default class Game {
-  constructor () {
+  constructor (fieldSize) {
     this.sound = Sound;
     this.soundDom = null;
-
-    const fieldSize = 4;
 
     this._gameNumbersGenerator = new GameNumbersGenerator();
     const numbers = this._gameNumbersGenerator.getNumbers(fieldSize);
@@ -41,6 +39,7 @@ export default class Game {
     gameDom.addEventListener('menuBtnClick', () => {
       this.menu.element.classList.toggle('menu--visible');
     });
+    
     return gameDom;
   }
 

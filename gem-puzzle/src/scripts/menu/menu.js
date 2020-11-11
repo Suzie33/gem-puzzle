@@ -1,5 +1,9 @@
+import MenuFieldSize from './menuFieldSize'
+
 export default class Menu {
   constructor () {
+    this.menuFieldsizeContainer = new MenuFieldSize().getContainer();
+    this.menuMainContainer = this.getContainer();
     this.element = this.getElement();
   }
 
@@ -7,10 +11,12 @@ export default class Menu {
     const menuDom = document.createElement('div');
     menuDom.classList.add('menu');
 
-    menuDom.appendChild(this.getContainer());
+    menuDom.appendChild(this.menuMainContainer);
+    menuDom.appendChild(this.menuFieldsizeContainer);
 
-    menuDom.addEventListener('menuBtnClick', () => {
-      console.log('click chai');
+    menuDom.addEventListener('fieldSizeClose', () => {
+      this.menuFieldsizeContainer.classList.add('hidden');
+      this.menuMainContainer.classList.remove('hidden');
     });
 
     return menuDom;
@@ -43,9 +49,10 @@ export default class Menu {
       }
     },
     {
-      text: 'Settings',
+      text: 'Field size',
       handler: () => {
-        console.log('settings');
+        this.menuMainContainer.classList.add('hidden');
+        this.menuFieldsizeContainer.classList.remove('hidden');
       }
     }];
 

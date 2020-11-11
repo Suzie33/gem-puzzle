@@ -3,7 +3,7 @@ export default class GameNumbersGenerator {
     return arr.sort(() => Math.random() - 0.5);
   }
 
-  _checkSequence (arr, fieldSize) {
+  _checkSequence (arr) {
     let sum = 0;
 
     for (let i = 0; i < arr.length; i++) {
@@ -16,7 +16,6 @@ export default class GameNumbersGenerator {
       }
       sum += counter;
     }
-    sum += fieldSize;
 
     if (sum % 2 === 0) {
       return true;
@@ -33,7 +32,7 @@ export default class GameNumbersGenerator {
 
     while (!isSequenceSolvable) {
       randomArray = this._generateRandomNumbers(numbers);
-      isSequenceSolvable = this._checkSequence(randomArray, fieldSize);
+      isSequenceSolvable = this._checkSequence(randomArray);
     }
 
     return randomArray;
