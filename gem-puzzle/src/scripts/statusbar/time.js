@@ -35,7 +35,6 @@ export default class Time {
     this.min = +this.min;
 
     this.sec++;
-    console.log(this.sec);
 
     this.updateTimer();
   }

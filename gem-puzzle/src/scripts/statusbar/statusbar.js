@@ -24,4 +24,8 @@ export default class Statusbar {
   destroy () {
     this.time.clearTimer();
   }
+
+  makeMove () {
+    this.moves.updateMoves();
+  }
 }

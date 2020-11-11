@@ -21,6 +21,7 @@ export default class Game {
     gameDom.classList.add("game");
 
     gameDom.addEventListener('moveDone', () => {
+      this.statusbar.makeMove();
       this.isGameFinished();
     })
     gameDom.addEventListener('menuBtnClick', () => {
