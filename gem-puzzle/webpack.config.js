@@ -38,6 +38,10 @@ module.exports = {
       {
         test: /\.(png|jpe?g|svg|gif|ico)$/,
         use: ['file-loader']
+      },
+      {
+        test: /\.wav$/,
+        loader: 'file-loader'
       }
     ]
   }
