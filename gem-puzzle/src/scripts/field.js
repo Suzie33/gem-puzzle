@@ -1,8 +1,9 @@
 import Cell from './cell.js';
 
 export default class Field {
-  constructor (fieldSize, numbers, menuDom) {
+  constructor (fieldSize, numbers, menuDom, cellSize) {
     this.fieldSize = fieldSize;
+    this.cellSize = cellSize;
     this._lastCellIndex = this.fieldSize * this.fieldSize - 1;
     this.emptyCell = new Cell(this._lastCellIndex, this.fieldSize * this.fieldSize, this.fieldSize - 1, this.fieldSize - 1);
     this.numbers = numbers;
@@ -28,7 +29,7 @@ export default class Field {
       const left = i % this.fieldSize;
       const top = (i - left) / this.fieldSize;
 
-      const cell = new Cell(i, this.numbers[i], left, top);
+      const cell = new Cell(i, this.numbers[i], left, top, this.cellSize);
 
       cellsArr.push(cell);
 

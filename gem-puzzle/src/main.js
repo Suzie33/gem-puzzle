@@ -2,4 +2,4 @@ import './css/scss.scss';
 import App from './app';
 
 const app = new App();
-app.init(4);
+app.init();

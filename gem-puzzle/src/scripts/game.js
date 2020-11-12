@@ -5,14 +5,14 @@ import GameNumbersGenerator from './gameNumbersGenerator.js';
 import Sound from '../assets/button5.wav';
 
 export default class Game {
-  constructor (fieldSize) {
+  constructor (fieldSize, cellSize) {
     this.sound = Sound;
     this.soundDom = null;
 
     this._gameNumbersGenerator = new GameNumbersGenerator();
     const numbers = this._gameNumbersGenerator.getNumbers(fieldSize);
     this.menu = new Menu();
-    this.field = new Field(fieldSize, numbers, this.menu.element);
+    this.field = new Field(fieldSize, numbers, this.menu.element, cellSize);
     this.statusbar = new Statusbar();
     this.element = this.getElement();
     this.element.appendChild(this.statusbar.element);

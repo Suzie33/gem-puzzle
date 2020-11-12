@@ -1,10 +1,10 @@
 export default class Cell {
-  constructor (index, value, left, top) {
+  constructor (index, value, left, top, cellSize) {
     this.index = index;
     this.value = value;
     this.left = left;
     this.top = top;
-    this.cellSize = 100;
+    this.cellSize = cellSize;
     this.element = this.getElement();
   }
 
@@ -13,6 +13,8 @@ export default class Cell {
     cellDom.classList.add("cell");
     cellDom.textContent = this.value;
 
+    cellDom.style.width = `${this.cellSize}px`;
+    cellDom.style.height = `${this.cellSize}px`;
     cellDom.style.left = `${this.left * this.cellSize}px`;
     cellDom.style.top = `${this.top * this.cellSize}px`;
 
