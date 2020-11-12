@@ -1,7 +1,8 @@
 export default class Time {
   constructor () {
-    this.min = '00';
-    this.sec = '00';
+    this.min = Number('00');
+    this.sec = Number('00');
+    this.timerSec = 0;
     this.timerText = '';
     this.timer = null;
     this.element = this.getElement();
@@ -31,18 +32,17 @@ export default class Time {
   }
 
   tick () {
-    this.sec = +this.sec;
-    this.min = +this.min;
-
-    this.sec++;
+    this.timerSec++;
 
     this.updateTimer();
   }
 
   updateTimer () {
-    if (this.sec >= 60) {
-      this.min = Math.floor(this.sec / 60);
-      this.sec = this.sec - this.min * 60;
+    if (this.timerSec >= 60) {
+      this.min = Math.floor(this.timerSec / 60);
+      this.sec = this.timerSec - this.min * 60;
+    } else {
+      this.sec = this.timerSec;
     }
 
     this.timerText.textContent = `${this.addZero(this.min)} : ${this.addZero(this.sec)}`;

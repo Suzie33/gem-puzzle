@@ -8,6 +8,7 @@ export default class Game {
   constructor (fieldSize, cellSize) {
     this.sound = Sound;
     this.soundDom = null;
+    this.fieldSize = fieldSize;
 
     this._gameNumbersGenerator = new GameNumbersGenerator();
     const numbers = this._gameNumbersGenerator.getNumbers(fieldSize);
@@ -45,7 +46,7 @@ export default class Game {
 
   isGameFinished() {
     const isFinished = this.field.cells.every(cell => {
-      return cell.value === cell.top * 4 + cell.left + 1;
+      return cell.value === cell.top * this.fieldSize + cell.left + 1;
     });
   
     if (isFinished) {

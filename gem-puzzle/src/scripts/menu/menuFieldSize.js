@@ -21,6 +21,7 @@ export default class MenuFieldSize {
     <option value="6">6x6</option>
     <option value="7">7x7</option>
     <option value="8">8x8</option>`;
+    
     fieldsizeSelect.addEventListener('change', (e) => {
       const fieldSize = e.target.value;
       fieldInfo.style.display = 'block';
