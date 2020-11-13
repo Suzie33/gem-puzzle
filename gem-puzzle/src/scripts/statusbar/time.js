@@ -45,7 +45,7 @@ export default class Time {
       this.sec = this.timerSec;
     }
 
-    this.timerText.textContent = `${this.addZero(this.min)} : ${this.addZero(this.sec)}`;
+    this.timerText.textContent = `${this.addZero(this.min)}:${this.addZero(this.sec)}`;
   }
 
   addZero (n) {
@@ -54,5 +54,9 @@ export default class Time {
 
   clearTimer () {
     clearTimeout(this.timer);
+  }
+
+  getWinTime () {
+    return this.timerText.textContent;
   }
 }

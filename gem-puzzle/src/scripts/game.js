@@ -45,12 +45,18 @@ export default class Game {
   }
 
   isGameFinished() {
+    let winMessage = "Ура! Вы решили головоломку за ##:## и N ходов";
+
     const isFinished = this.field.cells.every(cell => {
       return cell.value === cell.top * this.fieldSize + cell.left + 1;
     });
   
     if (isFinished) {
-      setTimeout(() => alert("You won!"), 300);
+      const winTime = this.statusbar.getWinTime();
+      const winMoves = this.statusbar.getWinMoves();
+
+      winMessage = `Great! You've sold the puzzle in ${winTime} and ${winMoves} moves!`;
+      setTimeout(() => alert(winMessage), 300);
     }
   }
 

@@ -28,4 +28,12 @@ export default class Statusbar {
   makeMove () {
     this.moves.updateMoves();
   }
+
+  getWinTime () {
+    return this.time.getWinTime();
+  }
+
+  getWinMoves () {
+    return this.moves.getWinMoves();
+  }
 }

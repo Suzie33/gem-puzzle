@@ -27,4 +27,8 @@ export default class Moves {
     this.moves++;
     this.movesCounter.textContent = `${this.moves}`;
   }
+
+  getWinMoves () {
+    return this.movesCounter.textContent;
+  }
 }
