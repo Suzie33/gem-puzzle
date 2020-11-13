@@ -1,5 +1,5 @@
 import Game from './scripts/game.js';
-// import Icon from './assets/favicon.ico';
+import Icon from './assets/favicon.ico';
 
 export default class App{
   constructor () {
@@ -7,11 +7,10 @@ export default class App{
     this.cellSize = 100;
   }
   init () {
-    // const appIcon = document.createElement('link');
-    // appIcon.rel = 'favicon';
-    // appIcon.type = 'image/png';
-    // appIcon.href = `${Icon}`;
-    // document.querySelector('head').append(appIcon);
+    const appIcon = document.createElement('link');
+    appIcon.rel = 'icon';
+    appIcon.href = Icon;
+    document.querySelector('head').append(appIcon);
 
     this.game = new Game(this.fieldSize, this.cellSize);
     this.element = this.game.element;
