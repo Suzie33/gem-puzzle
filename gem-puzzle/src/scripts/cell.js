@@ -20,6 +20,8 @@ export default class Cell {
 
 
     cellDom.onmousedown = (event) => {
+      let isDragNDrop = false;
+
       const cellLeft = cellDom.style.left;
       const cellTop = cellDom.style.top;
 
@@ -39,6 +41,7 @@ export default class Cell {
       
       function onMouseMove(event) {
         moveAt(event.pageX, event.pageY);
+        isDragNDrop = true;
       }
 
       document.addEventListener('mousemove', onMouseMove);
@@ -54,9 +57,11 @@ export default class Cell {
           cellDom.style.left = cellLeft;
           cellDom.style.top = cellTop;
           cellDom.style.zIndex = 'auto';
-          document.querySelector('.field').append(cellDom);
 
-          this._onclick();
+          document.querySelector('.field').append(cellDom);
+          
+          this._onclick(isDragNDrop);
+
         } else {
           cellDom.style.left = cellLeft;
           cellDom.style.top = cellTop;
@@ -66,22 +71,21 @@ export default class Cell {
 
         document.removeEventListener('mousemove', onMouseMove);
         cellDom.onmouseup = null;
-        cellDom.style.transitionProperty = 'all';
       };
     }
     cellDom.ondragstart = function() {
       return false;
     };
-    cellDom.addEventListener('click', () => this._onclick());
 
     return cellDom;
   }
 
-  _onclick() {
-    console.log('click');
+  _onclick(mode) {
+    document.body.append(this.element);
+    document.querySelector('.field').append(this.element);
     const event = new CustomEvent('clickCell', {
       bubbles: true, 
-      detail: this 
+      detail: { cell: this, mode: mode } 
     });
     this.element.dispatchEvent(event);
   }

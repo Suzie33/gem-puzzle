@@ -17,7 +17,7 @@ export default class Field {
     const fieldDom = document.createElement("div");
     fieldDom.classList.add("field");
     fieldDom.addEventListener('clickCell', (event) => {
-      this.moveCells(event.detail);
+      this.moveCells(event.detail.cell, event.detail.mode);
     });
     return fieldDom;
   }
@@ -41,13 +41,18 @@ export default class Field {
     return cellsArr;
   }
 
-  moveCells (cell) {
+  moveCells (cell, isDragNdrop) {
     //return if we cant move cell
     const leftDiff = Math.abs(this.emptyCell.left - cell.left);
     const topDiff = Math.abs(this.emptyCell.top - cell.top);
 
     if (leftDiff + topDiff > 1) 
       return;
+
+    if (!isDragNdrop) {
+      cell.element.style.transition = '.4s';
+      window.getComputedStyle(cell.element).transition;
+    }
 
     //move cell to empty place
     cell.element.style.left = `${this.emptyCell.left * cell.cellSize}px`;
