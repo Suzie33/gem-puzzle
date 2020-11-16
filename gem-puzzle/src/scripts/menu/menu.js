@@ -37,18 +37,6 @@ export default class Menu {
       }
     },
     {
-      text: 'Save game',
-      handler: () => {
-        console.log('save game');
-      }
-    },
-    {
-      text: 'Best scores',
-      handler: () => {
-        console.log('best');
-      }
-    },
-    {
       text: 'Field size',
       handler: () => {
         this.menuMainContainer.classList.add('hidden');

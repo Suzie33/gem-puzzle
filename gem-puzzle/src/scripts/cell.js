@@ -21,6 +21,8 @@ export default class Cell {
 
     cellDom.onmousedown = (event) => {
       let isDragNDrop = false;
+      const startX = event.clientX;
+      const startY = event.clientY;
 
       const cellLeft = cellDom.style.left;
       const cellTop = cellDom.style.top;
@@ -47,6 +49,16 @@ export default class Cell {
       document.addEventListener('mousemove', onMouseMove);
 
       cellDom.onmouseup = (event) => {
+        const endX = event.clientX;
+        const endY = event.clientY;
+
+        const diffX = Math.abs(startX - endX);
+        const diffY = Math.abs(startY - endY);
+
+        if (diffX < 5 && diffY < 5) {
+          isDragNDrop = false;
+        }
+
         cellDom.style.display = 'none';
         const elemBelow = document.elementFromPoint(event.clientX, event.clientY);
         cellDom.style.display = 'flex';

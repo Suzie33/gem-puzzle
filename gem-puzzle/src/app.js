@@ -41,7 +41,6 @@ export default class App{
         this.cellSize = 50;
         break;
       }
-      console.log(this.fieldSize);
     })
   }
   handleNewGame () {

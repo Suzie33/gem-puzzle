@@ -15,8 +15,9 @@ export default class MenuFieldSize {
     const fieldsizeSelect = document.createElement('select');
     fieldsizeSelect.classList.add('fieldsize_select');
     fieldsizeSelect.innerHTML =
-    `<option value="3">3x3</option>
-    <option value="4" selected>4x4</option>
+    `<option value="0" selected disabled>--</option>
+    <option value="3">3x3</option>
+    <option value="4">4x4</option>
     <option value="5">5x5</option>
     <option value="6">6x6</option>
     <option value="7">7x7</option>
