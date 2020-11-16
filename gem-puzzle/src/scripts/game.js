@@ -55,7 +55,7 @@ export default class Game {
       const winMoves = this.statusbar.getWinMoves();
 
       winMessage = `Great! You've sold the puzzle in ${winTime} and ${winMoves} moves!`;
-      setTimeout(() => alert(winMessage), 300);
+      setTimeout(() => alert(winMessage), 400);
     }
   }
 
