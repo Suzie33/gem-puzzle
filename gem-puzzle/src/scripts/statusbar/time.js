@@ -1,5 +1,5 @@
 export default class Time {
-  constructor () {
+  constructor() {
     this.min = Number('00');
     this.sec = Number('00');
     this.timerSec = 0;
@@ -9,35 +9,35 @@ export default class Time {
     this.startTime();
   }
 
-  getElement () {
-    const timeDom = document.createElement("div");
-    timeDom.classList.add("time");
+  getElement() {
+    const timeDom = document.createElement('div');
+    timeDom.classList.add('time');
 
-    const time_title = document.createElement("span");
-    time_title.classList.add('time_title');
-    time_title.textContent = 'Time: ';
-    const time_timer = document.createElement("span");
-    time_timer.classList.add('time_timer');
-    time_timer.textContent = `${this.min} : ${this.sec}`;
-    this.timerText = time_timer;
+    const timeTitle = document.createElement('span');
+    timeTitle.classList.add('time_title');
+    timeTitle.textContent = 'Time: ';
+    const timeTimer = document.createElement('span');
+    timeTimer.classList.add('time_timer');
+    timeTimer.textContent = `${this.min} : ${this.sec}`;
+    this.timerText = timeTimer;
 
-    timeDom.appendChild(time_title);
-    timeDom.appendChild(time_timer);
+    timeDom.appendChild(timeTitle);
+    timeDom.appendChild(timeTimer);
 
     return timeDom;
   }
 
-  startTime () {
+  startTime() {
     this.timer = setInterval(() => this.tick(), 1000);
   }
 
-  tick () {
+  tick() {
     this.timerSec++;
 
     this.updateTimer();
   }
 
-  updateTimer () {
+  updateTimer() {
     if (this.timerSec >= 60) {
       this.min = Math.floor(this.timerSec / 60);
       this.sec = this.timerSec - this.min * 60;
@@ -48,15 +48,15 @@ export default class Time {
     this.timerText.textContent = `${this.addZero(this.min)}:${this.addZero(this.sec)}`;
   }
 
-  addZero (n) {
+  addZero(n) {
     return (parseInt(n, 10) < 10 ? '0' : '') + n;
   }
 
-  clearTimer () {
+  clearTimer() {
     clearTimeout(this.timer);
   }
 
-  getWinTime () {
+  getWinTime() {
     return this.timerText.textContent;
   }
 }

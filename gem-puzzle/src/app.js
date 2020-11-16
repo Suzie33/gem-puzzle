@@ -1,12 +1,13 @@
-import Game from './scripts/game.js';
+import Game from './scripts/game';
 import Icon from './assets/favicon.ico';
 
-export default class App{
-  constructor () {
+export default class App {
+  constructor() {
     this.fieldSize = 4;
     this.cellSize = 100;
   }
-  init () {
+
+  init() {
     const appIcon = document.createElement('link');
     appIcon.rel = 'icon';
     appIcon.href = Icon;
@@ -40,15 +41,19 @@ export default class App{
       case '8':
         this.cellSize = 50;
         break;
+      default:
+        this.cellSize = 100;
+        break;
       }
-    })
+    });
   }
-  handleNewGame () {
-    this.element.removeEventListener('newGame', this.handler)
+
+  handleNewGame() {
+    this.element.removeEventListener('newGame', this.handler);
     this.element.remove();
     this.game.destroy();
     this.game = null;
-    
+
     this.init(this.fieldSize);
   }
 }

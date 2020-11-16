@@ -1,5 +1,5 @@
 export default class Cell {
-  constructor (index, value, left, top, cellSize) {
+  constructor(index, value, left, top, cellSize) {
     this.index = index;
     this.value = value;
     this.left = left;
@@ -10,14 +10,13 @@ export default class Cell {
 
   getElement() {
     const cellDom = document.createElement('div');
-    cellDom.classList.add("cell");
+    cellDom.classList.add('cell');
     cellDom.textContent = this.value;
 
     cellDom.style.width = `${this.cellSize}px`;
     cellDom.style.height = `${this.cellSize}px`;
     cellDom.style.left = `${this.left * this.cellSize}px`;
     cellDom.style.top = `${this.top * this.cellSize}px`;
-
 
     cellDom.onmousedown = (event) => {
       let isDragNDrop = false;
@@ -33,14 +32,14 @@ export default class Cell {
       cellDom.style.transitionProperty = 'none';
       cellDom.style.zIndex = 100;
       document.body.append(cellDom);
-      
+
       function moveAt(pageX, pageY) {
-        cellDom.style.left = pageX - shiftX + 'px';
-        cellDom.style.top = pageY - shiftY + 'px';
+        cellDom.style.left = `${pageX - shiftX}px`;
+        cellDom.style.top = `${pageY - shiftY}px`;
       }
 
       moveAt(event.pageX, event.pageY);
-      
+
       function onMouseMove(event) {
         moveAt(event.pageX, event.pageY);
         isDragNDrop = true;
@@ -71,9 +70,8 @@ export default class Cell {
           cellDom.style.zIndex = 'auto';
 
           document.querySelector('.field').append(cellDom);
-          
-          this._onclick(isDragNDrop);
 
+          this.onclick(isDragNDrop);
         } else {
           cellDom.style.left = cellLeft;
           cellDom.style.top = cellTop;
@@ -84,20 +82,20 @@ export default class Cell {
         document.removeEventListener('mousemove', onMouseMove);
         cellDom.onmouseup = null;
       };
-    }
-    cellDom.ondragstart = function() {
+    };
+    cellDom.ondragstart = function () {
       return false;
     };
 
     return cellDom;
   }
 
-  _onclick(mode) {
+  onclick(mode) {
     document.body.append(this.element);
     document.querySelector('.field').append(this.element);
     const event = new CustomEvent('clickCell', {
-      bubbles: true, 
-      detail: { cell: this, mode: mode } 
+      bubbles: true,
+      detail: { cell: this, mode },
     });
     this.element.dispatchEvent(event);
   }

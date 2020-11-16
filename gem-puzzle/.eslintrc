@@ -13,10 +13,19 @@
     "space-in-parens": "warn",
     "prefer-const": "warn",
     "no-use-before-define": "warn",
-    "no-debugger": "warn"
+    "no-debugger": "warn",
+    "linebreak-style" : 0,
+    "no-shadow": 0,
+    "no-plusplus": 0,
+    "no-alert": 0,
+    "no-param-reassign": 0,
+    "no-unused-expressions": 0,
+    "func-names": 0,
+    "class-methods-use-this": 0
   },
   "extends": [
-    "eslint:recommended"
+    "eslint:recommended",
+    "airbnb-base"
   ],
   "parserOptions": {
     "sourceType": "module"

@@ -1,13 +1,13 @@
-import MenuFieldSize from './menuFieldSize'
+import MenuFieldSize from './menuFieldSize';
 
 export default class Menu {
-  constructor () {
+  constructor() {
     this.menuFieldsizeContainer = new MenuFieldSize().getContainer();
     this.menuMainContainer = this.getContainer();
     this.element = this.getElement();
   }
 
-  getElement () {
+  getElement() {
     const menuDom = document.createElement('div');
     menuDom.classList.add('menu');
 
@@ -22,7 +22,7 @@ export default class Menu {
     return menuDom;
   }
 
-  getContainer () {
+  getContainer() {
     const menuContainer = document.createElement('ul');
     menuContainer.classList.add('menu__container');
 
@@ -30,18 +30,18 @@ export default class Menu {
       text: 'New Game',
       handler: () => {
         const event = new CustomEvent('newGame', {
-          bubbles: true, 
-          detail: this 
+          bubbles: true,
+          detail: this,
         });
         this.element.dispatchEvent(event);
-      }
+      },
     },
     {
       text: 'Field size',
       handler: () => {
         this.menuMainContainer.classList.add('hidden');
         this.menuFieldsizeContainer.classList.remove('hidden');
-      }
+      },
     }];
 
     menuItems.forEach((item) => {
@@ -51,7 +51,7 @@ export default class Menu {
       menuItem.addEventListener('click', item.handler);
 
       menuContainer.appendChild(menuItem);
-    })
+    });
 
     return menuContainer;
   }

@@ -3,7 +3,7 @@ import Moves from './moves';
 import MenuBtn from './menuBtn';
 
 export default class Statusbar {
-  constructor () {
+  constructor() {
     this.element = this.getElement();
     this.time = new Time();
     this.moves = new Moves();
@@ -14,26 +14,26 @@ export default class Statusbar {
     this.element.appendChild(this.menuBtn.element);
   }
 
-  getElement () {
-    const statusbarDom = document.createElement("div");
-    statusbarDom.classList.add("statusbar");
+  getElement() {
+    const statusbarDom = document.createElement('div');
+    statusbarDom.classList.add('statusbar');
 
     return statusbarDom;
   }
 
-  destroy () {
+  destroy() {
     this.time.clearTimer();
   }
 
-  makeMove () {
+  makeMove() {
     this.moves.updateMoves();
   }
 
-  getWinTime () {
+  getWinTime() {
     return this.time.getWinTime();
   }
 
-  getWinMoves () {
+  getWinMoves() {
     return this.moves.getWinMoves();
   }
 }
